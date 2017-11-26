@@ -18,22 +18,22 @@ namespace Portal2D.Models
         // Getters and Setters
 
         // Altera a posição do bloco
-        private void SetWallPosition(Vector2 wallPosition)
+        public void SetWallPosition(Vector2 wallPosition)
         {
             this.wallPosition = wallPosition;
         }
         // Altera a posição do bloco
-        private void SetWallTexture(Texture2D wallTexture)
+        public void SetWallTexture(Texture2D wallTexture)
         {
             this.wallTexture = wallTexture;
         }
         // Altera se a parede é ou não portável
-        private void SetWallPortable(Boolean portable)
+        public void SetWallPortable(Boolean portable)
         {
             this.portable = portable;
         }
         // Altera o atributo sólido da parede
-        private void SetWallSolid(Boolean solid)
+        public void SetWallSolid(Boolean solid)
         {
             this.solid = solid;
         }
@@ -63,7 +63,6 @@ namespace Portal2D.Models
         public void Initialize(Vector2 wallPosition,Boolean portable, Boolean solid)
 
         {
-            //SetWallTexture(wallTexture);
             SetWallPosition(wallPosition);
             SetWallPortable(portable);
             SetWallSolid(solid);

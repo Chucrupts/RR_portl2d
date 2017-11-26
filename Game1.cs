@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
+using Portal2D.Controller;
 using Portal2D.Models;
 using System.Collections.Generic;
 
@@ -13,6 +14,8 @@ namespace Portal2D
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Player player;
+        Portal entryPortal, exitPortal;
+        PortalController pc;
 
         // Player input
         // Teclado
@@ -31,7 +34,6 @@ namespace Portal2D
         float playerMoveSpeed;
 
 
-        //List<Wall> walls;
         Wall[] wall;
         Texture2D auxiliarTexture;
 
@@ -46,7 +48,7 @@ namespace Portal2D
         protected override void Initialize()
         {
             base.Initialize();
-            //walls = new List<Wall>();
+ 
         }
 
         //Carrega os assets do jogo.
@@ -56,20 +58,20 @@ namespace Portal2D
 
             // Instanciando a variável que se comunica com a placa gráfica.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            pc = new PortalController();
 
             //Seta a posição inicial do player
             // Load the player resources
             Vector2 playerPosition = new Vector2(400,400);
 
-            //player.Initialize(Content.Load<Texture2D>("Graphics\\player"), playerPosition);
 
 
             // Seta  uma variável como textura para poder passar no new Player()
             // Para o player deixar de ser Null
             auxiliarTexture = Content.Load<Texture2D>("player");
 
-            player = new Player(auxiliarTexture); // antes de fazer isso player sempre era
-                                                  // = null
+            player = new Player(auxiliarTexture); // antes de fazer isso player sempre era = null
+                                                  
 
             // Setando a constante de velocidade do player
             playerMoveSpeed = 8.0f;
@@ -115,7 +117,15 @@ namespace Portal2D
                         true, true);
                 }
             }
-                            
+                
+            
+            // Instanciando portais para teste
+            auxiliarTexture = Content.Load<Texture2D>("portal");
+            entryPortal = new Portal();
+            exitPortal = new Portal();
+            entryPortal.Initialize(auxiliarTexture, new Vector2(470,400),false);
+            exitPortal.Initialize(auxiliarTexture, new Vector2(250,400), true);
+            
         }
 
         //Pelo que eu entendi, descarrega a memória
@@ -144,6 +154,7 @@ namespace Portal2D
 
             currentGamePadState = GamePad.GetState(PlayerIndex.One);
             UpdatePlayer(gameTime);
+            pc.CollisionWithPlayer(player, entryPortal, exitPortal);
         }
 
         private void UpdatePlayer(GameTime gameTime)
@@ -195,6 +206,11 @@ namespace Portal2D
             {
                 wall[i-1].Draw(spriteBatch);
             }
+
+            // Desenhando portais de teste
+            entryPortal.Draw(spriteBatch);
+            exitPortal.Draw(spriteBatch);
+
 
             // Stop drawing
             spriteBatch.End();

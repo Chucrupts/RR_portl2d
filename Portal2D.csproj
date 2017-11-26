@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Controller\PlayerController.cs" />
     <Compile Include="Controller\PortalController.cs" />
+    <Compile Include="Controller\WallController.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Models\Wall.cs" />
     <Compile Include="Models\Portal.cs" />
@@ -67,6 +68,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\wall.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\portal.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
