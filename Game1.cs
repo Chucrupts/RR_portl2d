@@ -149,7 +149,7 @@ namespace Portal2D
         private void UpdatePlayer(GameTime gameTime)
 
         {
-            //// Get Thumbstick Controls
+            // Get Thumbstick Controls
             //player.Position.X += currentGamePadState.ThumbSticks.Left.X * playerMoveSpeed;
             //player.Position.Y -= currentGamePadState.ThumbSticks.Left.Y * playerMoveSpeed;
 
